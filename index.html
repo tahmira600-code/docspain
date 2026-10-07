@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b66c3">
+<meta name="description" content="TramiteClaro - دليل معلوماتي خاص للإجراءات في إسبانيا">
+<title>TramiteClaro España - دليل الإجراءات الرسمية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800;900&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- ربط ملف التصميم الخارجي -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+<div id="toast" class="toast-msg">📋 <span id="toastText">تم النسخ بنجاح!</span></div>
+
+<div class="small-calendar-widget" id="smallCalendarWidget" style="display:none">
+<div class="small-calendar-header">
+<span class="small-cal-title" id="smallCalTitle">يناير 2026</span>
+<div class="small-cal-controls">
+<button class="small-cal-btn" onclick="smallCalPrev()" aria-label="prev">‹</button>
+<select class="small-cal-year" id="smallCalYear" onchange="smallCalYearChange()">
+<option value="2025">2025</option><option value="2026" selected>2026</option><option value="2027">2027</option>
+</select>
+<button class="small-cal-btn" onclick="smallCalNext()" aria-label="next">›</button>
+<button class="small-cal-btn" onclick="toggleSmallCal()" title="min">−</button>
+</div></div>
+<div class="small-cal-weekdays"><div class="small-cal-weekday" data-key="wdMon">إث</div><div class="small-cal-weekday" data-key="wdTue">ثل</div><div class="small-cal-weekday" data-key="wdWed">أرب</div><div class="small-cal-weekday" data-key="wdThu">خم</div><div class="small-cal-weekday" data-key="wdFri">جم</div><div class="small-cal-weekday weekend" data-key="wdSat">سب</div><div class="small-cal-weekday weekend" data-key="wdSun">أح</div></div>
+<div class="small-cal-grid" id="smallCalGrid"></div>
+<div class="small-cal-footer"><div id="smallCalSelectedInfo" data-key="calInfoDefault">اضغط على رقم أحمر لمعرفة العيد - الإدارات مغلقة 🚫</div><div class="small-cal-legend"><span class="legend-dot"><span class="legend-color red"></span> <span data-key="legendClosed">عيد - مغلق</span></span><span class="legend-dot"><span class="legend-color blue"></span> <span data-key="legendToday">اليوم</span></span><span class="legend-dot"><span class="legend-color weekend"></span> <span data-key="legendWeekend">عطلة نهاية الأسبوع</span></span></div></div>
+</div>
+<div class="small-calendar-widget minimized" id="smallCalMinimized" style="display:flex" onclick="toggleSmallCal()" title="فتح التقويم"><span style="font-size:22px">📅</span></div>
+
+<header><div class="wrap">
+<div class="topbar"><div><div class="brand">TramiteClaro <span>España</span></div><div class="sub" data-key="subtitle">دليلك للإجراءات والخدمات الرسمية في إسبانيا</div></div>
+<label class="langbox"><span data-key="language">اللغة</span><select id="languageSelect" aria-label="language"><option value="ar" selected>العربية الفصحى</option><option value="darija">الدارجة المغربية</option><option value="zgh">ⵜⴰⵎⴰⵣⵉⵖⵜ</option><option value="es">Español</option><option value="fr">Français</option><option value="en">English</option></select></label></div>
+<div class="search"><input id="q" data-key-placeholder="searchPlaceholder" placeholder="ابحث عن: EX-10، TIE، أرايغو، Padrón..." oninput="searchSite()" onkeydown="if(event.key==='Enter')searchSite()"><button onclick="searchSite()" data-key="searchBtn">بحث</button></div>
+<div id="results" class="searchResults"></div>
+</div></header>
+
+<nav><div class="navin wrap">
+<a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;" data-key="home">الرئيسية</a>
+<a href="#immigration" data-key="immigration">الهجرة والإقامة</a>
+<a href="#arraigo" data-key="arraigo">الإقامة الاستثنائية</a>
+<a href="#forms" data-key="forms">نماذج EX</a>
+<a href="#fees" data-key="fees">الرسوم</a>
+<a href="#services" data-key="services">الخدمات</a>
+<a href="#official" data-key="official">المواقع الرسمية</a>
+<a href="#calendario" data-key="calendario">التقويم</a>
+<a href="https://infoext2.delegaciondelgobierno.gob.es/infoext2/" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#0b66c3,#1680d8);color:#fff!important;border-radius:10px;padding:8px 14px;font-weight:800" data-key="trackTitle">تتبع الطلب</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="immigration" class="section"><h2 data-key="immigrationTitle">الهجرة والإقامة</h2><p class="lead" data-key="immigrationLead">جميع الإجراءات الرسمية المتعلقة بالإقامة والهجرة في إسبانيا.</p><div class="grid">
+<a class="card" href="#arraigo"><div class="ico">🛂</div><h3 data-key="immCard1Title">الإقامة الاستثنائية</h3><p data-key="immCard1Desc">أنواع الأرايغو وشروط كل مسار حسب القانون الحالي.</p></a>
+<a class="card" href="#forms"><div class="ico">📑</div><h3 data-key="immCard2Title">نماذج EX الرسمية</h3><p data-key="immCard2Desc">جميع النماذج مع روابط PDF مباشرة من الوزارة.</p></a>
+<a class="card" href="https://sede.administracionespublicas.gob.es/pagina/index/directorio/icpplus" target="_blank" rel="noopener"><div class="ico">📅</div><h3 data-key="immCard3Title">حجز المواعيد</h3><p data-key="immCard3Desc">الوصول إلى خدمة المواعيد الرسمية Cita Previa.</p></a>
+<a class="card" href="https://sede.administracionespublicas.gob.es/procedimientos/index/categoria/34" target="_blank" rel="noopener"><div class="ico">🪪</div><h3 data-key="immCard4Title">بطاقة TIE والبصمات</h3><p data-key="immCard4Desc">معلومات وإجراءات بطاقة هوية الأجنبي.</p></a>
+</div></section>
+
+<section id="arraigo" class="section"><h2 data-key="arraigoTitle">الإقامة الاستثنائية (Arraigo)</h2><p class="lead" data-key="arraigoLead">المعلومات مبنية على صفحات وزارة الإدماج الرسمية. الشروط تختلف حسب حالتك الشخصية، والمرجع النهائي هو المصدر الحكومي.</p>
+<div class="notice"><span data-key="arraigoNotice">جميع أنواع الأرايغو تستخدم النموذج</span> <span class="blue" onclick="window.open('https://extranjeros.inclusion.gob.es/es/ModelosSolicitudes/Mod_solicitudes2/index.html','_blank')">EX-10 (<span data-key="directPdfText">تحميل PDF مباشر</span>)</span> <span data-key="arraigoNoticeEnd">في الحالات التي تحددها الوزارة.</span></div>
+<div class="grid">
+<a class="card" href="https://www.inclusion.gob.es/web/migraciones/w/arraigo-social" target="_blank" rel="noopener"><div class="ico">👥</div><h3>Arraigo Social</h3><p data-key="socDesc">الإقامة بسبب الاندماج الاجتماعي والروابط العائلية.</p></a>
+<a class="card" href="https://www.inclusion.gob.es/web/migraciones/w/arraigo-sociolaboral" target="_blank" rel="noopener"><div class="ico">👷</div><h3>Arraigo Sociolaboral</h3><p data-key="socoDesc">إقامة مرتبطة بعقود عمل.</p></a>
+<a class="card" href="https://www.inclusion.gob.es/web/migraciones/w/arraigo-socioformativo" target="_blank" rel="noopener"><div class="ico">🎓</div><h3>Arraigo Socioformativo</h3><p data-key="formDesc">مسار مرتبط بالتكوين والاندماج.</p></a>
+<a class="card" href="https://www.inclusion.gob.es/web/migraciones/w/arraigo-familiar" target="_blank" rel="noopener"><div class="ico">👨‍👩‍👧</div><h3>Arraigo Familiar</h3><p data-key="famDesc">حالات عائلية محددة منصوص عليها قانوناً.</p></a>
+</div></section>
+
+<section id="forms" class="section"><h2 data-key="formsTitle">جميع نماذج EX الرسمية</h2><p class="lead" data-key="formsLead">النماذج الأكثر استخداماً مع روابط PDF الرسمية والمباشرة:</p>
+<div class="grid" id="formsGridPrimary"></div>
+<button class="more-ex-btn" onclick="toggleMoreForms()"><span id="moreFormsBtnText" data-key="moreFormsBtn">عرض باقي نماذج EX ⬇️</span></button>
+<div id="moreFormsContainer"></div>
+</section>
+
+<section id="fees" class="section"><h2 data-key="feesTitle">الرسوم</h2><p class="lead" data-key="feesLead">رسوم إجراءات الأجانب والشرطة - يجب اختيار البند الصحيح قبل الدفع.</p>
+<div class="warning"><span data-key="feeWarning">قبل الدفع، اختر الإجراء والبند الصحيحين من الموقع الرسمي، لأن الرسم يختلف حسب المعاملة.</span></div>
+<div class="grid" id="feesGrid"></div>
+</section>
+
+<section id="services" class="section"><h2 data-key="servicesTitle">الخدمات المهمة</h2><p class="lead" data-key="servicesLead">روابط مباشرة للخدمات الإلكترونية الأكثر استخداماً.</p><div class="grid" id="servicesGrid"></div></section>
+
+<section id="official" class="section"><h2 data-key="officialTitle">مواقع رسمية مهمة</h2><div class="item" id="officialLinksArea"><div style="margin-bottom:14px;display:flex;flex-wrap:wrap;gap:8px">
+<a class="pill" href="https://inclusion.gob.es/web/migraciones/inicio" target="_blank" rel="noopener" title="Extranjería - Ministerio de Inclusión">Extranjería</a>
+<a class="pill" href="https://portal.seg-social.gob.es/" target="_blank" rel="noopener" title="Seguridad Social - Portal oficial">Seguridad Social</a>
+<a class="pill" href="https://www.sepe.es/" target="_blank" rel="noopener" title="SEPE - Servicio Público de Empleo Estatal">SEPE</a>
+<a class="pill" href="https://www.agenciatributaria.es/" target="_blank" rel="noopener" title="Agencia Tributaria - Hacienda">Hacienda</a>
+<a class="pill" href="https://www.dgt.es/" target="_blank" rel="noopener" title="DGT - Dirección General de Tráfico">DGT</a>
+<a class="pill" href="https://clave.gob.es/" target="_blank" rel="noopener" title="Cl@ve - Identificación electrónica oficial">Cl@ve</a>
+<a class="pill" href="https://infoext2.delegaciondelgobierno.gob.es/infoext2/" target="_blank" rel="noopener" title="Consulta estado expediente extranjería">InfoExt</a>
+<a class="pill" href="https://www.inclusion.gob.es/web/migraciones/modelos-generales" target="_blank" rel="noopener" title="Modelos EX oficiales">Modelos EX</a>
+</div><p data-key="officialText">استخدم دائماً المصدر الرسمي قبل إرسال أي طلب أو دفع أي رسم.</p><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px">
+<a class="link" href="https://administracion.gob.es/" target="_blank" rel="noopener" title="Administración General del Estado">administracion.gob.es ←</a>
+<a class="link" href="https://www.inclusion.gob.es/web/migraciones" target="_blank" rel="noopener" title="Ministerio de Inclusión - Migraciones">inclusion.gob.es ←</a>
+<a class="link" href="https://sede.administracionespublicas.gob.es/" target="_blank" rel="noopener" title="Sede Administraciones Públicas">sede.administracionespublicas.gob.es ←</a>
+<a class="link" href="https://extranjeros.inclusion.gob.es/" target="_blank" rel="noopener" title="Portal de Inmigración - Extranjería">extranjeros.inclusion.gob.es ←</a>
+<a class="link" href="https://portal.seg-social.gob.es/" target="_blank" rel="noopener" title="Portal Seguridad Social">portal.seg-social.gob.es ←</a>
+</div></div></section>
+
+<section id="calendario" class="section"><h2 data-key="calendarioTitle">التقويم - الأعياد الرسمية</h2><p class="lead" data-key="calendarioLead">تقويم صغير في الأعلى على اليسار - الأرقام الحمراء هي الأعياد الرسمية - الإدارات مغلقة.</p>
+<div class="notice"><strong data-key="calNoticeTitle">ملاحظة:</strong> <span data-key="calNotice">في الأعياد الرسمية، قد تكون الإدارات مغلقة. راجع دائماً التقويم الرسمي المعمول به.</span></div>
+<table class="holiday-table"><thead><tr><th data-key="thNum">#</th><th data-key="thColor">اللون</th><th data-key="thHoliday">العيد / المناسبة</th><th data-key="thDate">التاريخ</th><th data-key="thStatus">حالة الإدارات</th></tr></thead>
+<tbody id="holidayTableBody"></tbody></table></section>
+
+<section class="section"><h2 data-key="howTitle">كيفية استخدام الموقع؟</h2><div class="grid">
+<div class="item collapsible"><h3 class="collapse-title" onclick="toggleCollapse(this.parentElement)"><span data-key="how1Title">1. اختر الإجراء</span></h3><div class="collapse-body"><p data-key="how1Desc">ابحث عن الخدمة أو النموذج الذي تحتاجه.</p></div></div>
+<div class="item collapsible"><h3 class="collapse-title" onclick="toggleCollapse(this.parentElement)"><span data-key="how2Title">2. اطلع على المتطلبات</span></h3><div class="collapse-body"><p data-key="how2Desc">راجع الوثائق والشروط الخاصة بحالتك.</p></div></div>
+<div class="item collapsible"><h3 class="collapse-title" onclick="toggleCollapse(this.parentElement)"><span data-key="how3Title">3. افتح المصدر الرسمي</span></h3><div class="collapse-body"><p data-key="how3Desc">استخدم الرابط الرسمي لتحميل النموذج أو إكمال الإجراء.</p></div></div>
+<div class="item collapsible"><h3 class="collapse-title" onclick="toggleCollapse(this.parentElement)"><span data-key="how4Title">4. أكمل الإجراء</span></h3><div class="collapse-body"><p data-key="how4Desc">أرسل الطلب أو احجز موعداً مع الجهة الرسمية.</p></div></div>
+</div></section>
+
+<section class="section"><h2 data-key="faqTitle">أسئلة شائعة</h2>
+<div class="item collapsible"><h3 class="collapse-title" onclick="toggleCollapse(this.parentElement)"><span data-key="faq1Title">هل TramiteClaro موقع حكومي؟</span></h3><div class="collapse-body"><p data-key="faq1Desc">لا. الموقع دليل معلوماتي فقط.</p></div></div>
+<div class="item collapsible"><h3 class="collapse-title" onclick="toggleCollapse(this.parentElement)"><span data-key="faq2Title">أين أجد النماذج الرسمية؟</span></h3><div class="collapse-body"><p data-key="faq2Desc">في قسم «نماذج EX»، والروابط تفتح الصفحة الرسمية لوزارة الإدماج.</p></div></div>
+<div class="item collapsible"><h3 class="collapse-title" onclick="toggleCollapse(this.parentElement)"><span data-key="faq3Title">هل شروط الأرايغو هي نفسها للجميع؟</span></h3><div class="collapse-body"><p data-key="faq3Desc">لا. تختلف حسب نوع الأرايغو ووضعك الشخصي.</p></div></div>
+</section>
+
+</main>
+
+<footer class="footer"><div class="wrap">
+<div class="legal-box">
+⚖️ <span data-key="footerLegalTitle">إشعار قانوني هام:</span><br>
+<span data-key="footerLegalExact">دليل معلوماتي خاص للإجراءات في إسبانيا ولا يمثل أي جهة حكومية رسمية أو إدارة عمومية</span><br><br>
+<span style="font-weight:400;font-size:12.5px" data-key="footerLegalExtra">هذا الموقع هو مشروع خاص مستقل، لا ينتحل صفة أي وزارة أو إدارة، ولا يستخدم شعارات أو علامات تجارية رسمية. جميع الروابط تحيل مباشرة إلى المواقع الحكومية الرسمية. لا نقدم استشارة قانونية، والمعلومات قد تتغير، لذا يجب دائماً التحقق من المصدر الرسمي قبل أي إجراء. TramiteClaro ليس له أي علاقة بشركات الاتصالات التي تحمل اسم Claro.</span>
+</div>
+<div style="text-align:center">
+<span data-key="footerText">هذا الموقع دليل معلوماتي لمساعدة المستخدمين على الوصول إلى الإجراءات والمصادر الرسمية.</span><br><br>
+<span data-key="footerNote">المعلومات قد تتغير؛ راجع دائماً المصدر الرسمي قبل التقديم.</span><br><br>
+<span data-key="footerSource">المصدر الرسمي:</span> Ministerio de Inclusión - extranjeros.inclusion.gob.es | <strong data-key="lastUpdate">آخر تحديث</strong>: أكتوبر 2026<br><br>
+<span style="opacity:.7">tramiteclaroespaña.es • <span data-key="footerRights">جميع الحقوق محفوظة</span> © 2026</span>
+</div>
+</div></footer>
+
+<!-- ربط ملف البرمجة الخارجي -->
+<script src="script.js"></script>
+</body>
+</html>
